@@ -35,18 +35,37 @@ const formatPrice = (amount, currency) => {
 }
 
 const SkuCard = class extends React.Component {
-  async redirectToCheckout(event, sku, quantity = 1) {
-    event.preventDefault()
-    const { error } = await this.props.stripe.redirectToCheckout({
-      items: [{ sku, quantity }],
-      successUrl: `http://localhost:8000/page-2/`,
-      cancelUrl: `http://localhost:8000/advanced`,
-    })
+state = { 
+  disabled: false,
+  buttonText: 'ADD TO CART',
+  paymentMessage: '',
+}
 
-    if (error) {
-      console.warn("Error:", error)
-    }
-  }
+resetButton() {
+  this.setState({ disabled: false, buttonText: 'ADD ME BABY ONE MORE TIME!' })
+}
+
+addToCart(event, skuId, quantity = 1) {
+  console.log(this.props)
+  event.preventDefault()
+  this.setState({ disabled: true, buttonText: 'ADDED...' })
+  this.props.addToCart(skuId)
+  setTimeout(this.resetButton.bind(this), 500)
+}
+
+
+  // async redirectToCheckout(event, sku, quantity = 1) {
+  //   event.preventDefault()
+  //   const { error } = await this.props.stripe.redirectToCheckout({
+  //     items: [{ sku, quantity }],
+  //     successUrl: `http://localhost:8000/page-2/`,
+  //     cancelUrl: `http://localhost:8000/advanced`,
+  //   })
+
+  //   if (error) {
+  //     console.warn("Error:", error)
+  //   }
+  // }
 
   render() {
     const sku = this.props.sku
@@ -57,10 +76,11 @@ const SkuCard = class extends React.Component {
         <p>Price: {formatPrice(sku.price, sku.currency)}</p>
         <button
           style={buttonStyles}
-          onClick={event => this.redirectToCheckout(event, sku.id)}
+          onClick={event => this.addToCart(event, sku.id)}
         >
-          BUY ME
+         {this.state.buttonText}
         </button>
+        {this.state.paymentMessage}
       </div>
     )
   }

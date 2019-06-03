@@ -1,21 +1,23 @@
 import React from "react"
 import { Link } from "gatsby"
-import Checkout from '../components/Checkout'
-import Layout from "../components/layout"
 
+import Layout from "../components/layout"
+import Checkout from '../components/Checkout'
 import SEO from "../components/seo"
+import indexStyles from '../components/index.module.css'
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+    <SEO title="Home"/>
+  
+ <div className={indexStyles.view}>
+  <div className={indexStyles.hero}></div>
+  <Checkout /> 
+    <Link to="/products/">See our products!</Link>
+ </div>
  
-      {/* <Checkout />  */}
-    </div>
-    <Link to="/advance/">See our products!</Link>
+   
+ 
   </Layout>
 )
 

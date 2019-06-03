@@ -1,0 +1,18 @@
+.view{
+    width: 100vw;
+    height: 100vh;
+    /* background-color: blue; */
+    /* margin: auto; */
+    /* margin-top: 30px; */
+}
+
+
+.hero{
+    display: flex;
+    justify-content: center;
+    height: 30%;
+    width: 90%;
+    background-color: blue;
+    margin: auto;
+    margin-top: 1em;
+}

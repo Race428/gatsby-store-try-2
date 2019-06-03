@@ -6,8 +6,9 @@ const conatinerStyles = {
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
   padding: '1rem 0 1rem 0',
+  margin: 'auto',
 }
 
 class Skus extends Component {
@@ -21,6 +22,7 @@ class Skus extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <StaticQuery
         query={graphql`
@@ -43,7 +45,7 @@ class Skus extends Component {
         render={({ skus }) => (
           <div style={conatinerStyles}>
             {skus.edges.map(({ node: sku }) => (
-              <SkuCard key={sku.id} sku={sku} stripe={this.state.stripe} />
+              <SkuCard key={sku.id} sku={sku}  addToCart={this.props.addToCart} stripe={this.state.stripe} />
             ))}
           </div>
         )}
