@@ -24,7 +24,7 @@ const Header = ({ siteTitle }) => (
     
           <Link 
           className={headerStyles.link} 
-          to='/products'>
+          to='/advanced'>
             Products
         </Link>
     

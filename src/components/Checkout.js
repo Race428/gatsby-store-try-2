@@ -40,8 +40,9 @@ const Checkout = class extends React.Component {
       <button
         style={buttonStyles}
         onClick={event => this.redirectToCheckout(event)}
+        disabled={!this.props.cart.length}
       >
-        BUY MY BOOK
+        {this.props.cart.length ? 'GO TO CHECKOUT' : 'CART IS EMPTY'}
       </button>
     )
   }

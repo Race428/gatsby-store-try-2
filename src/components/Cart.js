@@ -40,7 +40,7 @@ const Cart = class extends React.Component {
   }
 
   render() {
-    // console.log(this.props.children)
+    console.log(this.props.children)
     return (
       <div>
         <Checkout cart={this.state.cart} />
