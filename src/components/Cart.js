@@ -21,6 +21,28 @@ const Cart = class extends React.Component {
     return this.state.cart
   }
 
+  
+
+  removeItemFromCart(newItem) {
+    let itemExisted = false
+    let updatedCart = this.state.cart.map(item => {
+      if (newItem === item.sku) {
+        itemExisted = true
+        return { sku: item.sku, quantity: --item.quantity }
+      } else {
+        return item
+      }
+    })
+    if (!itemExisted) {
+      updatedCart = [...updatedCart, { sku: newItem, quantity: 1 }]
+    }
+    this.setState({ cart: updatedCart })
+    // Store the cart in the localStorage.
+    localStorage.setItem('stripe_checkout_items', JSON.stringify(updatedCart))
+  }
+
+
+
   addToCart(newItem) {
     let itemExisted = false
     let updatedCart = this.state.cart.map(item => {
@@ -47,6 +69,7 @@ const Cart = class extends React.Component {
         {React.cloneElement(this.props.children, {
           addToCart: this.addToCart.bind(this),
           cart: this.state.cart,
+          removeItemFromCart: this.removeItemFromCart.bind(this)
         })}
       </div>
     )

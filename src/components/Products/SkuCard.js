@@ -35,23 +35,44 @@ const formatPrice = (amount, currency) => {
 }
 
 const SkuCard = class extends React.Component {
-state = { 
-  disabled: false,
-  buttonText: 'ADD TO CART',
-  paymentMessage: '',
-}
+  state = {
+    added: false,
+    buttonText: 'ADD TO CART',
+    paymentMessage: '',
+  }
 
-resetButton() {
-  this.setState({ disabled: false, buttonText: 'ADD ME BABY ONE MORE TIME!' })
-}
+  resetButton() {
+    this.setState({ disabled: false, buttonText: 'Remove Item from cart!' })
+  }
 
-addToCart(event, skuId, quantity = 1) {
-  console.log(this.props)
-  event.preventDefault()
-  this.setState({ disabled: true, buttonText: 'ADDED...' })
-  this.props.addToCart(skuId)
-  setTimeout(this.resetButton.bind(this), 500)
-}
+
+
+
+
+
+
+
+
+
+
+
+
+  removeItemFromCart(event, skuId, quantity = 1) {
+    console.log(this.props)
+    // event.preventDefault()
+    this.setState({ added: false, buttonText: 'Remove Item From Cart' })
+    this.props.removeItemFromCart(skuId)
+    // setTimeout(this.addToCart.bind(this), 500) //this is causing an issue
+  }
+
+
+  addToCart(event, skuId, quantity = 1) {
+    console.log(this.props)
+    event.preventDefault()
+    this.setState({ added: true, buttonText: 'Remove From Cart' })
+    this.props.addToCart(skuId)
+    // setTimeout(this.removeItemFromCart.bind(this), 500)
+  }
 
 
   // async redirectToCheckout(event, sku, quantity = 1) {
@@ -71,15 +92,44 @@ addToCart(event, skuId, quantity = 1) {
     const sku = this.props.sku
     return (
       <div style={cardStyles}>
-          <img src = {`${sku.image}`} alt = 'product' /> 
+        <img src={`${sku.image}`} alt='product' />
         <h4>{sku.attributes.name}</h4>
         <p>Price: {formatPrice(sku.price, sku.currency)}</p>
-        <button
+
+        {
+
+          this.state.added ?
+
+
+
+         
+          <button
           style={buttonStyles}
-          onClick={event => this.addToCart(event, sku.id)}
-        >
-         {this.state.buttonText}
+          onClick={event => this.removeItemFromCart(event, sku.id)} >
+          {this.state.buttonText}
         </button>
+
+           
+
+            :
+
+            <button
+            style={buttonStyles}
+            onClick={event => this.addToCart(event, sku.id)} >
+            {this.state.buttonText}
+          </button>
+
+        }
+
+
+
+
+
+
+
+
+
+
         {this.state.paymentMessage}
       </div>
     )

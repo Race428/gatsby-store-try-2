@@ -45,7 +45,7 @@ class Skus extends Component {
         render={({ skus }) => (
           <div style={conatinerStyles}>
             {skus.edges.map(({ node: sku }) => (
-              <SkuCard key={sku.id} sku={sku}  addToCart={this.props.addToCart} stripe={this.state.stripe} />
+              <SkuCard key={sku.id} sku={sku} removeItemFromCart={this.props.removeItemFromCart} addToCart={this.props.addToCart} stripe={this.state.stripe} />
             ))}
           </div>
         )}
