@@ -41,6 +41,8 @@ const Cart = class extends React.Component {
     localStorage.setItem('stripe_checkout_items', JSON.stringify(updatedCart))
   }
 
+  // make it so taht if the quantity = 0, splice that sku out of the array before sending it to the stripe API.
+
 
 
   addToCart(newItem) {

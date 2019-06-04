@@ -22,9 +22,14 @@ const Checkout = class extends React.Component {
     })
   }
 
+
+
+  
   async redirectToCheckout(event) {
     event.preventDefault()
+    console.log(this.props.cart)
     const { error } = await this.stripe.redirectToCheckout({
+    
       items: this.props.cart,
       successUrl: `http://localhost:8000/page-2/`,
       cancelUrl: `http://localhost:8000/`,

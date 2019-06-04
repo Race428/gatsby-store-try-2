@@ -60,7 +60,7 @@ const SkuCard = class extends React.Component {
   removeItemFromCart(event, skuId, quantity = 1) {
     console.log(this.props)
     // event.preventDefault()
-    this.setState({ added: false, buttonText: 'Remove Item From Cart' })
+    this.setState({ added: false, buttonText: 'ADD TO CART' })
     this.props.removeItemFromCart(skuId)
     // setTimeout(this.addToCart.bind(this), 500) //this is causing an issue
   }
