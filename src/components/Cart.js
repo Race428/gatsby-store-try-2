@@ -24,12 +24,25 @@ const Cart = class extends React.Component {
   
 
   removeItemFromCart(newItem) {
-    let itemExisted = false
+
+console.log(this.state.cart) 
+    let itemExisted = true
+    // if(this.state.cart.count()===0){ }
     let updatedCart = this.state.cart.map(item => {
       if (newItem === item.sku) {
         itemExisted = true
         return { sku: item.sku, quantity: --item.quantity }
+       
       } else {
+
+        let cart = [...this.state.cart]
+        for(let i = 0; i < cart.length; i++){
+          console.log(cart[i].quantity)
+          if(cart[i].quantity === 0){
+            cart.splice(i, 1)
+            this.setState({cart: cart})
+          }
+        }
         return item
       }
     })
@@ -38,7 +51,8 @@ const Cart = class extends React.Component {
     }
     this.setState({ cart: updatedCart })
     // Store the cart in the localStorage.
-    localStorage.setItem('stripe_checkout_items', JSON.stringify(updatedCart))
+    localStorage.removeItem('stripe_checkout_items', JSON.stringify(updatedCart))
+    
   }
 
   // make it so taht if the quantity = 0, splice that sku out of the array before sending it to the stripe API.
@@ -46,6 +60,7 @@ const Cart = class extends React.Component {
 
 
   addToCart(newItem) {
+    console.log(this.state.cart)
     let itemExisted = false
     let updatedCart = this.state.cart.map(item => {
       if (newItem === item.sku) {
@@ -55,10 +70,7 @@ const Cart = class extends React.Component {
         return item
       }
     })
-    if (!itemExisted) {
-      updatedCart = [...updatedCart, { sku: newItem, quantity: 1 }]
-    }
-    this.setState({ cart: updatedCart })
+     
     // Store the cart in the localStorage.
     localStorage.setItem('stripe_checkout_items', JSON.stringify(updatedCart))
   }
@@ -73,6 +85,7 @@ const Cart = class extends React.Component {
           cart: this.state.cart,
           removeItemFromCart: this.removeItemFromCart.bind(this)
         })}
+        <button onClick={() => console.log(this.state.cart)}>THis is the cart! </button>
       </div>
     )
   }
