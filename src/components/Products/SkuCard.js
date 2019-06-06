@@ -1,4 +1,5 @@
 import React from "react"
+import { element } from "prop-types";
 
 const cardStyles = {
   display: "flex",
@@ -39,6 +40,9 @@ const SkuCard = class extends React.Component {
     added: false,
     buttonText: 'ADD TO CART',
     paymentMessage: '',
+    skuNum:this.props.sku.id,
+    cartNum: [],
+    skuNumber:[]
   }
 
   resetButton() {
@@ -67,10 +71,11 @@ const SkuCard = class extends React.Component {
 
 
   addToCart(event, skuId, quantity = 1) {
-    console.log(this.props)
+    console.log(skuId)
     event.preventDefault()
     this.setState({ added: true, buttonText: 'Remove From Cart' })
     this.props.addToCart(skuId)
+    this.state.cartNum.push({skuId})
     // setTimeout(this.removeItemFromCart.bind(this), 500)
   }
 
@@ -89,16 +94,33 @@ const SkuCard = class extends React.Component {
   // }
 
   render() {
+  
     const sku = this.props.sku
-    return (
+    // console.log(this.props.sku.id)
+    // console.log(this.props)
+
+
+    for(let i = 0; i <this.props.cart.length; i++){
+     this.setState({skuNumber : this.props.cart[i].sku})
+    }
+ 
+   
+
+
+
+return (
       <div style={cardStyles}>
         <img src={`${sku.image}`} alt='product' />
         <h4>{sku.attributes.name}</h4>
         <p>Price: {formatPrice(sku.price, sku.currency)}</p>
 
+        {/* for loop goes over props and checks if sku is eqal other sku, then render the added button  */}
         {
 
-          this.state.added ?
+
+          
+
+          this.state.added?
 
 
 
