@@ -22,7 +22,7 @@ const Cart = class extends React.Component {
   }
 
 
-
+// might make it so that you can manually increase the number of items in the cart. would jjust have the number that is given, change the quanitity number on the cart function. 
   removeItemFromCart(newItem) {
     // console.log(this.state.cart)
     // // console.log(newItem.quantity)
