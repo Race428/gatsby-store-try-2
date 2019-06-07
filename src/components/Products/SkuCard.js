@@ -48,7 +48,20 @@ const SkuCard = class extends React.Component {
 
 
 
+componentDidMount(){
+  const sku = this.props.sku
+console.log(this.props)
+  console.log(sku.id)
+   this.props.cart.map((element) => {
+    if (element.sku === sku.id) {
+      this.setState({ added: true })
+    }
+    else { 
+      this.setState({ added: false})
+    }   
 
+  })
+}
 
 
 
@@ -89,7 +102,13 @@ const SkuCard = class extends React.Component {
   // }
 
   render() {
+
+   
+
     const sku = this.props.sku
+
+
+
     return (
       <div style={cardStyles}>
         <img src={`${sku.image}`} alt='product' />
@@ -97,27 +116,27 @@ const SkuCard = class extends React.Component {
         <p>Price: {formatPrice(sku.price, sku.currency)}</p>
 
         {
-
+          // iff
           this.state.added ?
 
 
 
-         
-          <button
-          style={buttonStyles}
-          onClick={event => this.removeItemFromCart(event, sku.id)} >
-          {this.state.buttonText}
-        </button>
 
-           
+            <button
+              style={buttonStyles}
+              onClick={event => this.removeItemFromCart(event, sku.id)} >
+              {this.state.buttonText}
+            </button>
+
+
 
             :
 
             <button
-            style={buttonStyles}
-            onClick={event => this.addToCart(event, sku.id)} >
-            {this.state.buttonText}
-          </button>
+              style={buttonStyles}
+              onClick={event => this.addToCart(event, sku.id)} >
+              {this.state.buttonText}
+            </button>
 
         }
 

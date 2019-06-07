@@ -1,18 +1,22 @@
 .header{ 
     height: 6em;
     width: 100%;
-    background-color: grey;
+    background-color: black; 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding-top: 30px;
+    position: fixed;
+    top: 0;
+    /* padding-top: 30px; */
 }
 
 .nav{ 
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 500px;
+    justify-content: space-evenly;
+    width: 70%;
+    margin: auto;
+
 
 }
 
@@ -20,12 +24,13 @@
     height: 90px;
     width: 90px;
     border-radius: 100px;
-    margin-left: 5px;
+    
     
 }
 
 .link{
     height:2em;
-    background-color: white;
+    color: white;
+    text-decoration: none;
     
 }

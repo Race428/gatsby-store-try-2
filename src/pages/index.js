@@ -12,8 +12,8 @@ const IndexPage = () => (
   
  <div className={indexStyles.view}>
   <div className={indexStyles.hero}></div>
-  s
-    <Link to="/products/">See our products!</Link>
+
+    {/* <Link to="/products/">See our products!</Link> */}
  </div>
  
    
